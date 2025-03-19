@@ -3,10 +3,9 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y \
     python3.10 \
     python3-pip \
-    python3-venv \
     git
 
-RUN python3 -m venv /venv && /venv/bin/pip install PyYAML
+RUN pip3 install --break-system-packages PyYAML  # Fix for the PEP 668 issue
 
 COPY feed.py /usr/bin/feed.py
 
